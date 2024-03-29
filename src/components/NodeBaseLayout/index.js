@@ -1,12 +1,17 @@
-import { Handle, Position } from "reactflow";
+import { Handle, Position, useEdges } from "reactflow";
 import NODE_ICONS from "../../assets/icons";
 import { NODE_LABELS } from "../../reactflow/nodes";
 import { NodeBaseLayoutContainer, NodeHeaderContainer } from "./styles";
+import { useMemo } from "react";
 
 function NodebaseLayout({ id, type, children, isConnectable }) {
   const label = NODE_LABELS[type];
   const icons = NODE_ICONS[type];
-
+  const edges = useEdges();
+  console.log("edges-s->", edges);
+  const isNotConnected = useMemo(() => {
+    return !edges.find((edge) => edge.source === id);
+  }, [edges]);
   return (
     <NodeBaseLayoutContainer>
       <Handle
@@ -20,8 +25,9 @@ function NodebaseLayout({ id, type, children, isConnectable }) {
         type="source"
         position={Position.Right}
         id={id}
+        isConnectable={isNotConnected}
+        // sourceHandle=""
         // style={{ top: 10, background: "#555" }}
-        isConnectable={isConnectable}
       />
       <NodeHeaderContainer>
         <img alt="left icon" className="node-left-icon" src={icons.left} />

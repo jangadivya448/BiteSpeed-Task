@@ -1,30 +1,68 @@
-import React from "react";
-import ReactFlow, { Background, useEdgesState, useNodesState } from "reactflow";
-import { MainComponent, ReactFlowContainer, ReactFlowWrapper } from "./styles";
-
-import "reactflow/dist/style.css";
-import ConnectionLine from "./edges/ConnectionLine";
+import React, { useCallback, useState } from "react";
+import ReactFlow, {
+  Background,
+  MarkerType,
+  addEdge,
+  useEdgesState,
+  useNodesState,
+} from "reactflow";
 import Header from "../components/Header";
 import NodeTypes from "./nodetypes";
 import RightSidebar from "../components/RightSidebar";
 
+import { MainComponent, ReactFlowContainer, ReactFlowWrapper } from "./styles";
+
+import "reactflow/dist/style.css";
+import { getNewNode } from "../utils";
+
 export default function Reactflow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState([
-    {
-      id: "1",
-      type: "message",
-      data: {
-        label: "message_label",
-        leftIcon: "",
-        rightIcon: "",
-        payload: {
-          message: "",
-        },
-      },
-      position: { x: 10, y: 50 },
-    },
-  ]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const onConnect = useCallback((params) => {
+    const { source, target } = params || {};
+    if (source !== target) {
+      setEdges((eds) =>
+        addEdge(
+          {
+            ...params,
+            markerEnd: {
+              type: MarkerType.ArrowClosed,
+              width: 20,
+              height: 20,
+              color: "#808080",
+            },
+            style: {
+              strokeWidth: 2,
+              stroke: "#808080",
+            },
+          },
+          eds,
+        ),
+      );
+    }
+  }, []);
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+  const onDrop = useCallback(
+    (event) => {
+      event.preventDefault();
+      const type = event.dataTransfer.getData("application/reactflow");
+      if (!type) {
+        return;
+      }
+      const position = reactFlowInstance.screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+      const newNode = getNewNode(type, position);
+      setNodes((nds) => nds.concat(newNode));
+    },
+    [reactFlowInstance],
+  );
+  console.log("edge-->", edges);
   return (
     <MainComponent>
       <Header />
@@ -34,12 +72,12 @@ export default function Reactflow() {
             nodes={nodes}
             edges={edges}
             nodeTypes={NodeTypes}
-            // connectionLineComponent={ConnectionLine}
+            onInit={setReactFlowInstance}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            onConnect={(params) => {
-              console.log("onconnect-->", params);
-            }}
+            onConnect={onConnect}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
           >
             <Background />
           </ReactFlow>

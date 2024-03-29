@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { NODE_WIDTH } from "../../utils/constant";
 
 export const NodeBaseLayoutContainer = styled.div`
   display: flex;
   border-radius: 1rem;
-  box-shadow: 0px 0px 8px 10px #e6e6e6;
-  width: 300px;
+  box-shadow: 0px 0px 8px 8px #e6e6e6;
+  width: ${NODE_WIDTH}px;
   flex-direction: column;
   overflow: hidden;
   background: #ffffff;
@@ -18,7 +19,7 @@ export const NodeHeaderContainer = styled.div`
   align-items: center;
   padding: 0.25rem 1rem;
   gap: 0.5rem;
-  background: #9cdfc9;
+  background: #bef3e2;
   .node-left-icon {
     height: 16px;
     width: 16px;

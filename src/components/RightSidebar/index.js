@@ -1,7 +1,12 @@
+import NodeList from "./NodeList";
 import { RightSidebarContainer } from "./styles";
 
 function RightSidebar() {
-  return <RightSidebarContainer>hi</RightSidebarContainer>;
+  return (
+    <RightSidebarContainer>
+      <NodeList />
+    </RightSidebarContainer>
+  );
 }
 
 export default RightSidebar;

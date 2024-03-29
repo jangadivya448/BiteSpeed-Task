@@ -15,4 +15,10 @@ export const ReactFlowWrapper = styled.section`
 
 export const ReactFlowContainer = styled.div`
   flex: 3;
+  .react-flow__handle {
+    height: 10px;
+    width: 10px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
 `;
