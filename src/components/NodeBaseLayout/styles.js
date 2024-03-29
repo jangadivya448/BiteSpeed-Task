@@ -1,0 +1,43 @@
+import styled from "styled-components";
+
+export const NodeBaseLayoutContainer = styled.div`
+  display: flex;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 8px 10px #e6e6e6;
+  width: 300px;
+  flex-direction: column;
+  overflow: hidden;
+  background: #ffffff;
+  .node-content {
+    padding: 1rem;
+  }
+`;
+
+export const NodeHeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  gap: 0.5rem;
+  background: #9cdfc9;
+  .node-left-icon {
+    height: 16px;
+    width: 16px;
+  }
+  .right-icon-wrp {
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 50%;
+    .node-right-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .node-left-label {
+    flex: 1;
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+`;
