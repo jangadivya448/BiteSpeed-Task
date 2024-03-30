@@ -20,7 +20,12 @@ function MessageSettings({ node }) {
   return (
     <>
       <TextSettingHead>Text</TextSettingHead>
-      <TextArea onChange={onChange} rows={4} value={message || ""} />
+      <TextArea
+        placeholder="Enter text"
+        onChange={onChange}
+        rows={4}
+        value={message || ""}
+      />
     </>
   );
 }
