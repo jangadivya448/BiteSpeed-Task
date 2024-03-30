@@ -1,8 +1,12 @@
 import { NODE_TYPES } from "./nodes";
-import Message from "./nodes/message";
+import { Message, MessageSettings } from "./nodes/message";
 
-const NodeTypes = {
+const NODE_TYPES_MAP = {
   [NODE_TYPES.MESSAGE]: Message,
 };
 
-export default NodeTypes;
+export const NODE_SETTINGS = {
+  [NODE_TYPES.MESSAGE]: MessageSettings,
+};
+
+export default NODE_TYPES_MAP;

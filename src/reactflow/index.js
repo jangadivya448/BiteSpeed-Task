@@ -6,19 +6,21 @@ import ReactFlow, {
   useEdgesState,
   useNodesState,
 } from "reactflow";
+import useActiveNodeStore from "../store";
 import Header from "../components/Header";
-import NodeTypes from "./nodetypes";
 import RightSidebar from "../components/RightSidebar";
+import NODE_TYPES_MAP from "./nodetypes";
+import { getNewNode } from "../utils";
 
 import { MainComponent, ReactFlowContainer, ReactFlowWrapper } from "./styles";
 
 import "reactflow/dist/style.css";
-import { getNewNode } from "../utils";
 
 export default function Reactflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const { setActiveNodeId } = useActiveNodeStore();
   const onConnect = useCallback((params) => {
     const { source, target } = params || {};
     if (source !== target) {
@@ -62,6 +64,12 @@ export default function Reactflow() {
     },
     [reactFlowInstance],
   );
+  const onNodeClick = useCallback((_, node) => {
+    setActiveNodeId(node?.id);
+  }, []);
+  const onPaneClick = useCallback(() => {
+    setActiveNodeId(null);
+  }, []);
   return (
     <MainComponent>
       <Header />
@@ -70,15 +78,17 @@ export default function Reactflow() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
-            nodeTypes={NodeTypes}
+            nodeTypes={NODE_TYPES_MAP}
             onInit={setReactFlowInstance}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
+            onNodeClick={onNodeClick}
+            onPaneClick={onPaneClick}
           >
-            <Background />
+            <Background gap={25} />
           </ReactFlow>
         </ReactFlowContainer>
         <RightSidebar />

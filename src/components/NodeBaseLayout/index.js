@@ -1,10 +1,12 @@
 import { Handle, Position, useEdges } from "reactflow";
-import NODE_ICONS from "../../assets/icons";
+import useActiveNodeStore from "../../store";
+import NODE_ICONS from "../../assets/nodes";
 import { NODE_LABELS } from "../../reactflow/nodes";
 import { NodeBaseLayoutContainer, NodeHeaderContainer } from "./styles";
 import { useMemo } from "react";
 
 function NodebaseLayout({ id, type, children, isConnectable }) {
+  const { activeNodeId } = useActiveNodeStore();
   const label = NODE_LABELS[type];
   const icons = NODE_ICONS[type];
   const edges = useEdges();
@@ -12,7 +14,7 @@ function NodebaseLayout({ id, type, children, isConnectable }) {
     return !edges.find((edge) => edge.source === id);
   }, [edges]);
   return (
-    <NodeBaseLayoutContainer>
+    <NodeBaseLayoutContainer isSelected={activeNodeId === id}>
       <Handle
         type="target"
         position={Position.Left}

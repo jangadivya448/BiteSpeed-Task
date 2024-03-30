@@ -9,6 +9,7 @@ export const NodeBaseLayoutContainer = styled.div`
   flex-direction: column;
   overflow: hidden;
   background: #ffffff;
+  border: ${({ isSelected }) => isSelected && "2px solid #1919d1"};
   .node-content {
     padding: 1rem;
   }

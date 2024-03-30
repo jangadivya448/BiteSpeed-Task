@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import NODES, { NODE_NAMES } from "../../../reactflow/nodes";
 
 import { NodeContainer, NodeListContainer } from "./styles";
-import NODE_ICONS from "../../../assets/icons";
+import NODE_ICONS from "../../../assets/nodes";
 
 function NodeList() {
   const list = useMemo(() => {

@@ -14,6 +14,6 @@ export const getNewNode = (type, position) => {
       x: position.x - NODE_WIDTH / 2,
       y: position.y - 40,
     },
-    data: NODES[type].data,
+    data: { ...NODES[type].data },
   };
 };
