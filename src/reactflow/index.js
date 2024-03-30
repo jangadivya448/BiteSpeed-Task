@@ -14,7 +14,7 @@ import { getNewNode } from "../utils";
 
 import { MainComponent, ReactFlowContainer, ReactFlowWrapper } from "./styles";
 
-import "reactflow/dist/style.css";
+
 
 export default function Reactflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -68,7 +68,7 @@ export default function Reactflow() {
     setActiveNodeId(node?.id);
   }, []);
   const onPaneClick = useCallback(() => {
-    setActiveNodeId(null);
+    // setActiveNodeId(null);
   }, []);
   return (
     <MainComponent>

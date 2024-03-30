@@ -1,16 +1,18 @@
 {
   "name": "bitespeed-task",
+  "homepage": "https://jangadivya448.github.io/bitespeed-task",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "reactflow": "^11.10.4",
-    "serve": "^14.2.1",
     "styled-components": "^6.1.8",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4",
@@ -18,10 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
