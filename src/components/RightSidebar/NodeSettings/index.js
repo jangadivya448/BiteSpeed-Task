@@ -10,12 +10,16 @@ import arrow from "../../../assets/icons/arrow.png";
 
 function NodeSettings() {
   const { activeNodeId, setActiveNodeId } = useActiveNodeStore();
+  // get nodes from useNodes
   const nodes = useNodes();
+  // get node details from all nodes using nodeid
   const node = useMemo(() => {
     return nodes?.find((nd) => nd.id === activeNodeId);
   }, [nodes]);
+  // Setting component based on nodetype
   const SettingsComp = NODE_SETTINGS[node?.type];
   const goBack = () => {
+    // clear activeNodeId on click of back button
     setActiveNodeId(null);
   };
   return (

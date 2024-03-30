@@ -5,10 +5,13 @@ import { NodeContainer, NodeListContainer } from "./styles";
 import NODE_ICONS from "../../../assets/nodes";
 
 function NodeList() {
+  // get list of nodes
   const list = useMemo(() => {
     return Object.values(NODES);
   }, []);
+  // on drag start of node from rightside bar
   const onDragStart = (event, nodeType) => {
+    // store nodeType in dataTransfer to get it back on drop
     event.dataTransfer.setData("application/reactflow", nodeType);
     event.dataTransfer.effectAllowed = "move";
   };

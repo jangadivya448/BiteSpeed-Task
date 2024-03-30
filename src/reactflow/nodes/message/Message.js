@@ -1,10 +1,12 @@
+import { memo, useMemo } from "react";
 import { useNodes } from "reactflow";
 import NodebaseLayout from "../../../components/NodeBaseLayout";
-import { memo, useMemo } from "react";
 
+// message type Node
 function Message(props) {
   const { id, type, isConnectable } = props;
   const nodes = useNodes();
+  // get node data from all nodes
   const node = useMemo(() => {
     return nodes?.find((nd) => nd.id === id);
   }, [nodes]);

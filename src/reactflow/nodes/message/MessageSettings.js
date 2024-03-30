@@ -2,9 +2,11 @@ import { useReactFlow } from "reactflow";
 import TextArea from "../../../components/TextArea";
 import { TextSettingHead } from "./styles";
 
+// Settings component for type message
 function MessageSettings({ node }) {
   const { message } = node?.data || {};
   const { setNodes } = useReactFlow();
+  // set node data on change of text
   const onChange = (evnt) => {
     setNodes((nds) =>
       nds.map((nd) => {
