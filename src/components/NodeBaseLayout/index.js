@@ -8,7 +8,6 @@ function NodebaseLayout({ id, type, children, isConnectable }) {
   const label = NODE_LABELS[type];
   const icons = NODE_ICONS[type];
   const edges = useEdges();
-  console.log("edges-s->", edges);
   const isNotConnected = useMemo(() => {
     return !edges.find((edge) => edge.source === id);
   }, [edges]);
@@ -17,8 +16,6 @@ function NodebaseLayout({ id, type, children, isConnectable }) {
       <Handle
         type="target"
         position={Position.Left}
-        // style={{ background: "#555" }}
-        onConnect={(params) => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       />
       <Handle
@@ -26,8 +23,6 @@ function NodebaseLayout({ id, type, children, isConnectable }) {
         position={Position.Right}
         id={id}
         isConnectable={isNotConnected}
-        // sourceHandle=""
-        // style={{ top: 10, background: "#555" }}
       />
       <NodeHeaderContainer>
         <img alt="left icon" className="node-left-icon" src={icons.left} />

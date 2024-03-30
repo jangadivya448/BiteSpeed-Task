@@ -21,4 +21,7 @@ export const ReactFlowContainer = styled.div`
     border: 2px solid #fff;
     border-radius: 50%;
   }
+  .react-flow__attribution {
+    display: none;
+  }
 `;

@@ -3,13 +3,10 @@ import { memo } from "react";
 
 function Message(props) {
   const { id, data, type, isConnectable } = props;
-  // console.log("data-->", data);
   return (
-    <NodebaseLayout
-      type={type}
-      id={id}
-      isConnectable={isConnectable}
-    ></NodebaseLayout>
+    <NodebaseLayout type={type} id={id} isConnectable={isConnectable}>
+      <p>{data?.message}</p>
+    </NodebaseLayout>
   );
 }
 

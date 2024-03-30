@@ -3,8 +3,8 @@ import { NODE_WIDTH } from "../../utils/constant";
 
 export const NodeBaseLayoutContainer = styled.div`
   display: flex;
-  border-radius: 1rem;
-  box-shadow: 0px 0px 8px 8px #e6e6e6;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 10px 6px #e6e6e6;
   width: ${NODE_WIDTH}px;
   flex-direction: column;
   overflow: hidden;

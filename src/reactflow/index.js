@@ -62,7 +62,6 @@ export default function Reactflow() {
     },
     [reactFlowInstance],
   );
-  console.log("edge-->", edges);
   return (
     <MainComponent>
       <Header />

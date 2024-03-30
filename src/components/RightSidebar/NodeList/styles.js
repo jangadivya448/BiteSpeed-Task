@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NodeListContainer = styled.div`
-  padding: 0.75rem;
+  padding: 1rem;
   height: 100%;
   overflow: auto;
   display: grid;

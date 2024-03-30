@@ -22,7 +22,7 @@ function NodeList() {
         >
           <img
             className="node-icon"
-            src={NODE_ICONS[node.type].left}
+            src={NODE_ICONS[node.type].icon}
             alt="icon"
           />
           <p className="node-name">{NODE_NAMES[node.type]}</p>
